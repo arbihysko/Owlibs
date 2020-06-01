@@ -1,0 +1,546 @@
+* {
+	box-sizing: border-box; /* border and padding inside the box you specify */
+}
+::-webkit-scrollbar {
+	width:0;
+}
+body {
+	background: rgb(0,8,10); /* the dark background color by default */
+  	margin: 0px;
+  	padding: 0px;
+  	height: 65vh;
+}
+
+/* ======================== NavBar Start ======================== */
+
+.navBar {
+	position: fixed;
+	display: inline-block;
+	width: 100%;
+	height: 6em;
+	background: rgba(255,255,255,.8);
+	top:0; right: 0; left: 0;
+	overflow: hidden;
+	z-index: 10000;
+	transition: 0.3s;
+}
+.navBar:hover, .navBar:hover .navContent {
+	background: azure;
+}
+.wrapper {
+	position: relative;
+	left: 6%;
+	display: flex;
+	list-style-type: none; 
+	flex-wrap: nowrap;
+	justify-content: space-between; 
+	align-items: center;
+	width: 88%; bottom: 0;
+	height: 100%;
+}
+.barElement {
+	font: bold 1.3em 'Comfortaa', sans-serif;
+	color: rgb(32,32,32);
+	text-transform: uppercase;
+	border-bottom: 2px solid black;
+	margin-top: 1.7vh;
+	cursor: pointer;
+}
+/* -------------------- Search Box -------------------*/
+.sElement {
+	/* the element in the navbar */
+	color: rgb(32,32,32);
+	cursor: pointer;
+}
+
+#searchDiv {
+	/* only the searchbox and the button */
+	width: calc(100% - 4em);
+	margin-top: 5.5vh;
+	transition: .6s ease;
+	display: none;
+	opacity: 0;
+}
+
+#searchBox {
+	font: 1.2em sans-serif;
+	padding: 1.2em;
+	border-radius: 15px 0 0 15px;
+	border-right: none;
+	background: transparent;
+	transition: .3s ease;
+	width: calc(100% - 3em);
+}
+#searchSub {
+	font: 1.2em sans-serif;
+	padding: 1.2em;
+	border: 1px solid orangered;
+	border-radius: 0 15px 15px 0;
+	width: 3em;
+	float: right;
+	background: orangered;
+	color: azure; 
+}
+#searchSub>.fa-search {
+	margin: -1.2em;
+	transform: translateY(-.4em);	
+}
+#searchBox:focus, #searchBox:active {
+	border: 1px solid orangered;
+}
+
+#closeSearch {
+	display: none;
+	cursor: pointer;
+	flex-shrink: 1;
+	color: rgb(32,32,32);
+	transition: .5s ease;
+}
+#closeSearch:hover {
+	transform: scale(1.8);
+	color: orangered;
+}
+
+/* ------------------- logo showing on the navbar ----------------------*/
+.logoImg {
+	width: 5.5em;
+	height: auto;
+	margin-top: 1.2em;
+}
+
+/* --------------------- Nav Content --------------------*/
+.navContent {
+	position: fixed;
+	width: 100%;
+	top: 6em;right: 0;
+	opacity: 0;
+	visibility: hidden;
+	background: rgba(255,255,255,.8);
+	transform: translateY(5em);
+	transition: .3s ease;
+	box-shadow: 0 10px 20px rgba(0,0,0,.5);
+	z-index: 10001;
+	padding: 1em 6%;
+}
+.scrollDiv {
+	position: relative;
+	width: 100%;
+	height: calc(100vh - 6em);
+	overflow-y: scroll; 
+}
+.navContent>.scrollDiv>.row {
+	min-height: 30vh;
+	display: flex;
+	width: 100%;
+	padding: 0;
+	justify-content: space-between;
+	flex-direction: row;
+}
+.navContent>.scrollDiv>.row>.element{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+.navContent>.scrollDiv>.row>.element>span.head{
+	order: 1;
+	font-family: 'Open Sans';
+	border: none;
+	color: orangered;
+}
+.topNavLink {
+	order: 2;
+	margin-top: 1em;
+	overflow: hidden;
+}
+.topNavLink>li {
+	list-style-type: none;
+}
+.topNavLink>li.link>a {
+	position: relative;
+	padding: 0 3em;
+	margin-left: -3em;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+/* ---------------- Go to the top --------------- */
+
+.goTop {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	bottom: 2em;
+	right: 2em;
+	width: 3.6em;
+	height: 3.6em;
+	background: none;
+	border: 4px solid orangered;
+	border-radius: 15px;
+	color: azure;
+	z-index: 100;
+	cursor: pointer;
+	visibility: hidden;
+	opacity: 0;
+	box-shadow: 0 0 20px rgba(0,0,0,.5),inset 0 0 10px rgba(0,0,0,.5); 
+	text-shadow: 0 0 20px rgba(0,0,0,.5);
+	transition: .3s ease;
+	transform-origin: left bottom;
+}
+.goTop:hover {
+	transform: rotate(-15deg);
+}
+.goTop>.arrow {
+	transition: .5s ease;
+}
+.goTop:hover .arrow {
+	transform: rotate(15deg);
+}
+
+.hidden {display: none;}
+
+/* ========================== NavBar End ========================== */
+
+/* ========================= Content Start ========================= */
+
+.content {
+	display: flex;
+	flex-direction: column;
+}
+
+/* --------------------- default sector provider ------------------- */
+
+.sector {
+	display: flex;
+	clip-path: polygon(0 0, 100% 0,  100% calc(100% - 7vw), 0 100%);
+	margin-top: -7vw;
+}
+
+/* ---------------------- sector One #1 -----------------------*/
+
+.sectorOne {
+	display: flex;
+	flex-direction: column;
+	background: no-repeat top center / cover url('../images/b-w.jpg');
+	background-attachment: fixed;
+	min-height: 80vh;
+	width: 100%;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	clip-path: polygon(0 0, 100% 0,  100% calc(100% - 7vw), 0 100%);
+	z-index: 10;
+}
+.poster {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 8em;
+	color: rgba(0,0,0,.7);
+	text-shadow: -.1em -.1em 0 rgba(255,255,255,.6);
+}
+.miniPoster {
+	font-size: 1.5em;
+	font-family: 'Fira Mono', calibri, sans-serif;
+	color: white;
+	letter-spacing: .2em;
+}
+
+/* ---------------------- sector Two #2 ------------------ */
+
+.sectorTwo {
+	background: rgb(33,33,33);
+	align-items: center;
+	min-height: 80vh;
+	z-index:9;
+}
+.MRBook {
+	position: relative;
+	left: 20%;
+	width: 52%; /* width of the content bar */
+	height: 270px;
+	background: orangered;
+	box-shadow: 0 0 50px rgba(0,0,0,.8);
+	border-radius: 15px;
+	padding-right: 5em;
+	transition: .3s ease;
+}
+
+/* the number part 1st */
+.MRBook:before {
+	content: "1st";
+	position: absolute;
+	left: .3em;
+	top: -.7em;
+	font: 700% 'Open Sans', candara, sans-serif;
+	color: azure;
+	text-shadow: 0px 7px 17px rgba(0,0,0,.6);
+	transition: inherit;
+}
+
+/* The book thumbnail*/
+.MRBook:after {
+	content: "";
+	position: absolute;
+	width: 33%; /* if % is related to the width of the real element not the window*/
+	height: calc(100% + 80px);
+	right: -17%;
+	top:-40px;
+	box-shadow: 0 0 50px rgba(0,0,0,.8);
+	border-radius: inherit;
+	transition: inherit;
+}
+.MRBook:hover.MRBook:after, .MRBook:hover.MRBook:before {
+	transform: scale(1.1);
+}
+.MRBook>.title {
+	padding-top: 12%;
+	padding-right: 12%;
+	text-align: right;
+	font: bold 2em "Comfortaa", candara, sans-serif;
+	text-shadow: 0px 2px 2px rgba(0,0,0,.3)
+}
+.MRBook>.content {
+	padding: .7em 2em;
+	font: 1.3em "Calibri Light";
+	color: white;
+	text-shadow: 0 1px 2px grey;
+	overflow: auto;
+}
+
+/* --------------------- sector Three #3 ----------------------- */
+
+.sectorThree {
+	position: relative;
+	min-height: 50vh;
+	align-items: center;
+	justify-content: center;
+	background: orangered;
+	z-index: 8;
+}
+.question {
+	font-size: 5em;
+	position: absolute;
+}
+
+/* --------------------- sector Four #4 -------------------- */
+
+.sectorFour {
+	flex-direction: row;
+	min-height: 80vh;
+	overflow: hidden;
+	z-index: 7;
+}
+.sectorFour>.element {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	height: inherit;
+	filter: grayscale(1);
+	transition: .5s;
+	transform-origin: center center;
+	font: 3.5em "Open Sans", candara, sans-serif;
+	color: azure;
+	text-transform: uppercase;
+	box-shadow: 0 0 30px black
+}
+.webDev {
+	background: no-repeat center / cover url("../images/webDev.jpg");
+}
+.systemDev {
+	background: no-repeat center / cover url("../images/systemDev.jpg");
+}
+.appDev {
+	background: no-repeat center / cover url("../images/appDev.jpg");
+}
+.gameDev {
+	background: no-repeat center / cover url("../images/gameDev.jpg");
+}
+.sectorFour>.element:hover {
+	filter: none;
+	transform: scale(1.1);
+}
+
+/* --------------- sector Five #5 -------------- */
+
+.sectorFive {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	min-height: 80vh;
+	overflow: hidden;
+	z-index: 6;
+	background: rgb(32,32,32);
+	padding: 5vw;
+	padding-top: 6vw;
+}
+.sectorFive>.topBest {
+	order:1;
+	width: 100%;
+	height: 15%;
+	text-transform: uppercase;
+	text-align: center;
+	font: 3em "Fira Mono", calibri;
+	color: azure;
+	letter-spacing: .3em;
+}
+.emptySpace {
+	order: 3;
+	height: 2vw;
+	width: 100%;
+}
+
+/* ------------------ End of book thumbnail ------------------ */
+
+/* ======================== Content End ========================*/
+
+/* ====================== Start of Footer ====================== */
+
+footer {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 50vh;
+	align-items: space-around;
+	bottom: 0
+}
+.footer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 1em 5vw;
+}
+.footer>.element {
+	flex: 0 0 270px;
+	display: flex;
+	flex-direction: column;
+}
+span.head {
+	order: 1;
+	font: 2em "Open Sans", sans-serif;
+	text-transform: uppercase;
+	border-bottom: 8px solid orangered;
+	color: azure;
+}
+ul.sect {
+	order: 2;
+	margin-top: 1em;
+}
+.sect>li.link {
+	list-style-type: none;
+}
+.link>a {
+	text-decoration: none;
+	font: 1.2em 'calibri light', sans-serif;
+	color: rgb(32,32,32);
+	transition: .5s;
+}
+.link>a:hover {
+	color: orangered;
+}
+
+.copyright {
+	width: 100%;
+	text-align: center;
+	font: 1.2em 'Calibri light', sans-serif, serif;
+	letter-spacing: 1px;
+}
+
+/* ======================= End of Footer ======================= */
+
+/* ======================= Categories =======================*/
+
+/* --------------- book Row -------------- */
+
+.bookShelf {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	min-height: 80vh;
+	overflow: hidden;
+	z-index: 6;
+	background: rgb(32,32,32);
+	padding: 5vh 6vw;
+}
+sector.bookShelf:nth-of-type(even) {
+	background: transparent;
+}
+sector.bookShelf:last-of-type {
+	padding-top: 15vh;
+}
+.catSpan {
+	padding-top: 11vw; 
+	width: 100%;
+	background: rgba(32,32,32,1);
+	text-transform: uppercase;
+	text-align: center;
+	font: 3em "Fira Mono", calibri;
+	color: azure;
+	letter-spacing: .3em;
+}
+.bookSector {
+	order:2;
+	display: flex;
+	height: 85%;
+	align-items: flex-end;
+	justify-content: space-between;
+	margin-top: 5vh;
+}
+
+/*------------------- The book thumbnail -------------------*/
+
+.bookLink {
+	flex: 0 0 18%;
+	min-height: 300px;
+	text-decoration: none;
+	color: inherit;
+
+}
+.bookThumb {
+	overflow: hidden;
+	border-radius: 15px;
+	transition: .3s ease;
+}
+.bookThumb:hover {
+	transform: translateY(-2.5em);
+	box-shadow: 0 1em 4em rgba(0,0,0,.7)
+}
+.thumbImg {
+	position: relative;
+	width: 100%;
+}
+.thumbContent {
+	width: 100%;
+	background: orangered;
+	font: 1.1em candara, sans-serif;
+	padding: 1em;
+	margin-top: -7px;
+}
+
+/* ------------------ End of book thumbnail ------------------ */
+
+/* ================== Error content =================== */
+
+.errContent {
+	height: 80vh;
+	padding-left: 6%;
+	background: no-repeat fixed center / cover url('../images/big_city.jpg');
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7vw), 0 100%);
+	filter: grayscale();
+}
+.errContent>span, .errContent>div {
+	font : 5em 'Open Sans', sans-serif;
+	color: #222;
+}
+
+.searching>.bookShelf:first-of-type {
+	padding-top: 20vh
+}
+.searching>.bookShelf {
+	background: rgba(32,32,32,1);
+}
