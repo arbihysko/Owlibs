@@ -17,15 +17,15 @@ class Model
 	public function getShelf() {
 		$cnt = sizeof($this->fetchData());
 		//print_r($cnt);
-		$test = array();
+		$shelfData = array();
 		for ($i=1; $i <= $cnt; $i++) { 
 			$sta = $this->db->prepare("SELECT library.id, library.category, shelves.shelf_category FROM library inner join shelves on id = main_category where id=$i");
 			$sta->execute();
 			$data = $sta->fetchAll();
-			array_push($test, $data);
+			array_push($shelfData, $data);
 		}
 		
-		return $test;
+		return $shelfData;
 	}
 
 	public function queryExe($query) {
@@ -33,7 +33,7 @@ class Model
 		$sta->setFetchMode(PDO::FETCH_ASSOC);
 		$sta->execute();
 		$data = $sta->fetchAll();//fetches data in aray
-		$res = json_encode($data);
+		//$res = json_encode($data);
 		return($data);
 	}
 }

@@ -7,7 +7,7 @@ class Bootstrap {
 		$url = isset($_GET['url']) ? $_GET['url'] : null; //get the url if it is set, if not let it null, later used as index
 		$url = rtrim($url, '/'); // trim the last /
 		$url = filter_var($url, FILTER_SANITIZE_URL); // sanitaze for security reasons
-		$url = explode('/', $url); // explode the url
+		$url = explode('/', $url); // split the url by '/'
 
 		// print_r($url); // for debug
 
@@ -20,11 +20,11 @@ class Bootstrap {
 			return false;
 		}
 
-		// default calling controller function, checks iffile exists at controllers and then requires it
+		// default calling controller function, checks if file exists at controllers and then requires it
 		$file = "controllers/$url[0].php";
 		if (file_exists($file)) {
 			require $file;
-			//echo "1"; //debuging purposes
+			//echo "1"; // for debug
 		} else {
 			$this->errReport('Page not found!'); // throw error if not found, theres a msg in the box
 			return false;
@@ -35,7 +35,7 @@ class Bootstrap {
 
 
 		//calling methods area
-		if (isset($url[1])) { //check if isset
+		if (isset($url[1])) { // check if there is set a param
 			if (method_exists($controller, $url[1])) {//check if method exists at the controller
 				$controller->{$url[1]()};// execute the method
 			} else {

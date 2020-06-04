@@ -2,11 +2,7 @@
 
 class Err_Model extends Model
 {
-	
-	function test()
-	{
-		
-	}
+	// Error model
 }
 
 ?>

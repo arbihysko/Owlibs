@@ -5,7 +5,7 @@ class View
 	
 	function __construct()
 	{
-		// not rll anything to construct here, doesn't get that extended
+		// nothing to construct here
 	}
 	//opt true means u have another rendering process
 	public function render($name,$title, $opt = false) {
